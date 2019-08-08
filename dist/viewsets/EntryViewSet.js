@@ -160,9 +160,10 @@ class EntryViewSet extends BaseViewSet_1.default {
             const json = entry.toJSON();
             // Return tags as strings, not objects
             json.tags = json.tags.map((tag) => tag.name);
-            // Don't include entry fields and entryType fields on list endpoint
-            delete json.fields;
-            delete json.entryType.fields;
+            // Do include entry fields and entryType fields on list endpoint
+            // TODO: Look into making this optional via ?complete=false||true
+	    // delete json.fields;
+            // delete json.entryType.fields;
             return json;
         });
         if ('results' in result) {
